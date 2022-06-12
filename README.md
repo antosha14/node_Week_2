@@ -1,2 +1,1 @@
-# node_Week_2
-RS School
+Task 2 RS School
