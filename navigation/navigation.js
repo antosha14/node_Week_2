@@ -22,7 +22,13 @@ export let viewCurrentDirectory = function () {
 
 // Не работают относительные ссылки
 export let changeCurrentDirecrory = function (input) {
-    let inputDirectory = resolve(currentDirectory, input.slice(3))
+    try {
+        var inputDirectory = resolve(currentDirectory, input.slice(3))
+    }
+    catch {
+        return operationError()
+    }
+
     access(inputDirectory, (err) => {
         if (err) {
             operationError()

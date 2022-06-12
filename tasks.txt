@@ -29,8 +29,8 @@
     Hash calculation implemented properly
         +20 Calculate hash for file
     Compress and decompress operations
-        +0 Compress file (using Brotli algorithm) (Streams)
-        +0 Decompress file (using Brotli algorithm) (Streams)
+        +20 Compress file (using Brotli algorithm) (Streams)
+        +20 Decompress file (using Brotli algorithm) (Streams)
     Advanced Scope
         +50 All files operations with reading/writing should be performed using Streams API
         +20 Codebase is written in ESM modules instead of CommonJS

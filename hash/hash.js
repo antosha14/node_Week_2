@@ -5,7 +5,11 @@ import { createHash } from 'crypto'
 import { resolve, dirname } from 'path'
 
 export const calculateHash = function (inputedFilePath) {
-    const filePath = resolve(currentDirectory, inputedFilePath.slice(5))
+    try {
+        var filePath = resolve(currentDirectory, inputedFilePath.slice(5))
+    } catch {
+        return operationError()
+    }
     const fileContent = readFile(filePath, (err) => {
         if (err) {
             operationError()

@@ -4,8 +4,13 @@ import { resolve } from 'path'
 import { createReadStream } from 'fs'
 
 export const fileReader = function (inputedFilePath) {
-    const fileToRead = resolve(currentDirectory, inputedFilePath.slice(4))
-    const readStream = createReadStream(fileToRead)
+    try {
+        var fileToRead = resolve(currentDirectory, inputedFilePath.slice(4))
+        var readStream = createReadStream(fileToRead)
+    }
+    catch {
+        return operationError()
+    }
     readStream.pipe(process.stdout)
     readStream.on('error', (err) => {
         operationError()

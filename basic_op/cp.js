@@ -21,9 +21,13 @@ export const fileCopyCreater = function (inputedFilePath) {
 }
 
 export const moveFile = function (inputedFilePath) {
-    const links_m = inputedFilePath.split(' ').slice(1)
-    const fileToCopyPath_m = resolve(currentDirectory, links_m[0])
-    const copiedFilePath_m = resolve(currentDirectory, links_m[1]) + sep + basename(fileToCopyPath_m)
+    try {
+        var links_m = inputedFilePath.split(' ').slice(1)
+        var fileToCopyPath_m = resolve(currentDirectory, links_m[0])
+        var copiedFilePath_m = resolve(currentDirectory, links_m[1]) + sep + basename(fileToCopyPath_m)
+    } catch {
+        return operationError()
+    }
     const reader_m = createReadStream(fileToCopyPath_m)
     const writer_m = createWriteStream(copiedFilePath_m)
     reader_m.on('error', (err) => {

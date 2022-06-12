@@ -11,13 +11,13 @@ import { addEmptyFile } from "./basic_op/add.js";
 import { renameFile } from "./basic_op/rn.js";
 import { fileCopyCreater, moveFile } from "./basic_op/cp.js";
 import { removeFile } from "./basic_op/rm.js";
-
+import { decompressFile } from "./compress_and_dec_op/decompress.js";
 
 export const clArgumentsArray = process.argv.slice(2)
 export const rl = readline.createInterface({ input, output })
 export let userName = ''
 export let availableCommands = ['.exit', 'cd ', 'os --EOL', 'os --cpus', 'os --homedir', 'os --username', 'os --architecture', 'up'
-    , 'ls', 'hash ', 'compress ', 'cat ', 'add ', 'rn ', 'cp ', 'rm ', 'mv ']
+    , 'ls', 'hash ', 'compress ', 'cat ', 'add ', 'rn ', 'cp ', 'rm ', 'mv ', 'decompress ']
 
 export const greetings = function () {
     userName = clArgumentsArray[0].slice(clArgumentsArray[0].indexOf("=") + 1)
@@ -105,6 +105,7 @@ const appLaunch = async function () {
         }
         else if (input.startsWith('compress ')) {
             return compressFile(input)
+
         }
         else if (input.startsWith('cat ')) {
             return fileReader(input)
@@ -125,6 +126,9 @@ const appLaunch = async function () {
         }
         else if (input.startsWith('mv ')) {
             moveFile(input)
+        }
+        else if (input.startsWith('decompress ')) {
+            return decompressFile(input)
         }
     })
     rl.on('close', showGoodByeMessage)
