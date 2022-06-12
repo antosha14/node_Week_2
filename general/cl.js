@@ -1,7 +1,7 @@
 import path, { resolve, dirname, join } from 'path'
 import { mkdir, readdir, readFile, writeFile } from 'fs/promises'
 import { fileURLToPath } from 'url'
-
+import { pathParce } from '../newPathParce.js'
 
 // import.meta идет от самого ДЖэса, а функция возвращает абсолютный путь к файлу, который вызывает скрипт
 export const __fileName = fileURLToPath(import.meta.url)
