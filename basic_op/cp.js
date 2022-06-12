@@ -3,11 +3,16 @@ import { currentDirectory, viewCurrentDirectory } from '../navigation/navigation
 import path, { resolve, dirname, basename, extname, sep } from 'path'
 import { readFile, createWriteStream, createReadStream, open, access, unlink } from 'fs'
 import { removeFile } from './rm.js'
+import { pathParce } from '../newPathParce.js'
 
 export const fileCopyCreater = function (inputedFilePath) {
-    const links = inputedFilePath.split(' ').slice(1)
-    const fileToCopyPath = resolve(currentDirectory, links[0])
-    const copiedFilePath = resolve(currentDirectory, links[1]) + sep + basename(fileToCopyPath)
+    const links = pathParce(inputedFilePath)
+    try {
+        var fileToCopyPath = resolve(currentDirectory, links[0])
+        var copiedFilePath = resolve(currentDirectory, links[1]) + sep + basename(fileToCopyPath)
+    } catch {
+        return operationError()
+    }
     const reader = createReadStream(fileToCopyPath)
     const writer = createWriteStream(copiedFilePath)
     reader.on('error', (err) => {
@@ -22,7 +27,7 @@ export const fileCopyCreater = function (inputedFilePath) {
 
 export const moveFile = function (inputedFilePath) {
     try {
-        var links_m = inputedFilePath.split(' ').slice(1)
+        var links_m = pathParce(inputedFilePath)
         var fileToCopyPath_m = resolve(currentDirectory, links_m[0])
         var copiedFilePath_m = resolve(currentDirectory, links_m[1]) + sep + basename(fileToCopyPath_m)
     } catch {

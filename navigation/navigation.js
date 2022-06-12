@@ -2,6 +2,7 @@ import { homedir } from 'os'
 import { access } from 'fs'
 import { operationError } from '../main.js'
 import { resolve, dirname } from 'path'
+import { pathParce } from '../newPathParce.js'
 
 export let currentDirectory = homedir
 
@@ -23,7 +24,7 @@ export let viewCurrentDirectory = function () {
 // Не работают относительные ссылки
 export let changeCurrentDirecrory = function (input) {
     try {
-        var inputDirectory = resolve(currentDirectory, input.slice(3))
+        var inputDirectory = resolve(currentDirectory, pathParce(input)[0])
     }
     catch {
         return operationError()

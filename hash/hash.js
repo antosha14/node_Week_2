@@ -3,10 +3,11 @@ import { operationError } from '../main.js'
 import { currentDirectory, viewCurrentDirectory } from '../navigation/navigation.js'
 import { createHash } from 'crypto'
 import { resolve, dirname } from 'path'
+import { pathParce } from '../newPathParce.js'
 
 export const calculateHash = function (inputedFilePath) {
     try {
-        var filePath = resolve(currentDirectory, inputedFilePath.slice(5))
+        var filePath = resolve(currentDirectory, pathParce(inputedFilePath)[0])
     } catch {
         return operationError()
     }

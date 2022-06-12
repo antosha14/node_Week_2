@@ -1,11 +1,12 @@
 import { operationError } from '../main.js'
 import { currentDirectory, viewCurrentDirectory } from '../navigation/navigation.js'
 import { writeFile } from 'fs'
-import { sep } from 'path'
+import path, { sep } from 'path'
+import { pathParce } from '../newPathParce.js'
 
 export const addEmptyFile = function (input) {
     try {
-        var fileToCreatePath = currentDirectory + sep + input.slice(4)
+        var fileToCreatePath = currentDirectory + sep + pathParce(input)[0]
     } catch {
         return operationError()
     }
