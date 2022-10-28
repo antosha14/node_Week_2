@@ -1,6 +1,9 @@
 import { readFile } from 'fs'
 import { operationError } from '../main.js'
-import { currentDirectory, viewCurrentDirectory } from '../navigation/navigation.js'
+import {
+    currentDirectory,
+    viewCurrentDirectory,
+} from '../navigation/navigation.js'
 import { createHash } from 'crypto'
 import { resolve, dirname } from 'path'
 
@@ -15,8 +18,9 @@ export const calculateHash = function (inputedFilePath) {
             operationError()
             return viewCurrentDirectory()
         }
-        const hash = createHash('sha256').update(filePath).digest("hex")
+        const hash = createHash('sha256').update(filePath).digest('hex')
         console.log(hash)
         return viewCurrentDirectory()
     })
+    //asdjjqwndk
 }

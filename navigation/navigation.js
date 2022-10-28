@@ -3,18 +3,17 @@ import { access } from 'fs'
 import { operationError } from '../main.js'
 import { resolve, dirname } from 'path'
 
-export let currentDirectory = homedir
-
+export let currentDirectory = homedir(
     // Меняем текущую дирректорию процесса нода
-    (function () {
+    function () {
         console.log(currentDirectory)
         try {
             process.chdir(currentDirectory)
         } catch {
             operationError()
         }
-    })
-
+    }
+)
 
 export let viewCurrentDirectory = function () {
     console.log(`You are currently in ${currentDirectory}`)
@@ -24,8 +23,7 @@ export let viewCurrentDirectory = function () {
 export let changeCurrentDirecrory = function (input) {
     try {
         var inputDirectory = resolve(currentDirectory, input.slice(3))
-    }
-    catch {
+    } catch {
         return operationError()
     }
 
@@ -43,9 +41,9 @@ export let changeCurrentDirecrory = function (input) {
     })
 }
 
-
 export let moveOneFolderUp = function (input) {
-    if (true) { //currentDirectory != homedir используем если нужно не иметь возможности спускаться ниже старта 
+    if (true) {
+        //currentDirectory != homedir используем если нужно не иметь возможности спускаться ниже старта
         currentDirectory = dirname(currentDirectory)
         return viewCurrentDirectory()
     } else {
@@ -53,4 +51,3 @@ export let moveOneFolderUp = function (input) {
         return viewCurrentDirectory()
     }
 }
-
